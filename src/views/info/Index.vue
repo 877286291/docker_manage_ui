@@ -12,19 +12,28 @@
         <el-row>
           <el-col :span="2"><img src="../../assets/img/Docker.png" alt=""></el-col>
           <el-col :span="22">
-            <span>local</span>
+            <span>{{ info.Name }}</span>
             <el-tag type="success" size="mini" style="margin-left: 10px;margin-right: 10px;">UP</el-tag>
-            <span>2020-11-08 00:08:19</span><br>
+            <span>{{ dateParse(info.SystemTime) }}</span><br>
             <i class="element-icons" style="vertical-align:middle;margin-right: 4px">&#xe7ae;</i> 0 stacks
-            <i class="element-icons" style="vertical-align:middle;margin-right: 4px">&#xe61c;</i> 0 container
-            <i class="element-icons" style="color: #23ae89;vertical-align:middle;margin-right: 4px">&#xe695;</i>0
-            <i class="element-icons" style="color: #ae2323;vertical-align:middle;margin-right: 4px">&#xe695;</i>0 /
+            <i class="element-icons" style="vertical-align:middle;margin-right: 4px">&#xe61c;</i> {{ info.Containers }}
+            container
+            <i class="element-icons"
+               style="color: #23ae89;vertical-align:middle;margin-right: 4px">&#xe695;</i>{{ info.ContainersRunning }}
+            <i class="element-icons"
+               style="color: #ae2323;vertical-align:middle;margin-right: 4px">&#xe695;</i>{{ info.ContainersStopped }} /
             <i class="element-icons" style="color: #23ae89;vertical-align:middle;margin-right: 4px">&#xe60d;</i>0
             <i class="element-icons" style="color: #f0ad4e;vertical-align:middle;margin-right: 4px">&#xe60d;</i>0
-            <i class="element-icons" style="vertical-align:middle;margin-right: 4px">&#xe68f;</i>0 volume
-            <i class="element-icons" style="vertical-align:middle;margin-right: 4px">&#xe64f;</i>0 images <br>
-            <i class="element-icons" style="vertical-align:middle;margin-right: 4px">&#xe641;</i>0 core
-            <i class="element-icons" style="vertical-align:middle;margin-right: 4px">&#xe627;</i>0 GB
+            <i class="element-icons" style="vertical-align:middle;margin-right: 4px">&#xe68f;</i>{{
+              info.Plugins.Volume.length
+            }} volume
+            <i class="element-icons" style="vertical-align:middle;margin-right: 4px">&#xe64f;</i>{{ info.Images }}
+            images <br>
+            <i class="element-icons" style="vertical-align:middle;margin-right: 4px">&#xe641;</i>{{ info.NCPU }} core
+            <i class="element-icons"
+               style="vertical-align:middle;margin-right: 4px">&#xe627;</i>{{
+              (info.MemTotal / Math.pow(1024, 3)).toFixed(1)
+            }} GB
             <i class="el-icon-price-tag" style="margin-right: 4px"></i> No tags
           </el-col>
         </el-row>
@@ -47,9 +56,15 @@ export default {
   },
   methods: {
     async getHostInfo() {
-      console.log("Get Host Info")
-      const res = await this.$http.get("/docker/info", {params: {host: "127.0.0.1:2375"}})
+      const {data: res} = await this.$http.get("/docker/info", {params: {host: "127.0.0.1:2375"}})
       console.log(res)
+      if (res.code === 200) {
+        this.infoList = res.data
+        return this.$message.success(res.message)
+      }
+    },
+    dateParse(date) {
+      return new Date(parseInt(Date.parse(date))).toLocaleString().replace(/:\d{1,2}$/, ' ');
     }
   }
 }
