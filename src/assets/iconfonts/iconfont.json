@@ -1,0 +1,72 @@
+{
+  "id": "2187748",
+  "name": "docker_manage_ui",
+  "font_family": "element-icons",
+  "css_prefix_text": "el-icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "5057044",
+      "name": "内存条",
+      "font_class": "neicuntiao",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "1045413",
+      "name": "cpu",
+      "font_class": "cpu",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "14341896",
+      "name": "stack-solid",
+      "font_class": "stack-solid",
+      "unicode": "e7ae",
+      "unicode_decimal": 59310
+    },
+    {
+      "icon_id": "8423784",
+      "name": "心跳心动",
+      "font_class": "huaban",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "10487548",
+      "name": "电源",
+      "font_class": "dianyuan",
+      "unicode": "e695",
+      "unicode_decimal": 59029
+    },
+    {
+      "icon_id": "554328",
+      "name": "网络",
+      "font_class": "network",
+      "unicode": "e6b3",
+      "unicode_decimal": 59059
+    },
+    {
+      "icon_id": "1361524",
+      "name": "存储",
+      "font_class": "volume",
+      "unicode": "e68f",
+      "unicode_decimal": 59023
+    },
+    {
+      "icon_id": "9860857",
+      "name": "容器",
+      "font_class": "container",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "12371159",
+      "name": "光盘",
+      "font_class": "image",
+      "unicode": "e64f",
+      "unicode_decimal": 58959
+    }
+  ]
+}
