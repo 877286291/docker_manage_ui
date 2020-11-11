@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     async getHostInfo() {
-      const {data: res} = await this.$http.get("/docker/info", {params: {host: "127.0.0.1:2375"}})
+      const {data: res} = await this.$http.get("/docker/info", {params: {host: "39.108.180.201:2375"}})
       console.log(res)
       if (res.code === 200) {
         this.infoList = res.data
