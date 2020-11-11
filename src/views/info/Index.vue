@@ -32,7 +32,7 @@
             <i class="element-icons" style="vertical-align:middle;margin-right: 4px">&#xe641;</i>{{ info.NCPU }} core
             <i class="element-icons"
                style="vertical-align:middle;margin-right: 4px">&#xe627;</i>{{
-              (info.MemTotal / Math.pow(1024, 3)).toFixed(1)
+              (info.MemTotal / Math.pow(1000, 3)).toFixed(1)
             }} GB
             <i class="el-icon-price-tag" style="margin-right: 4px"></i> No tags
           </el-col>
