@@ -2,7 +2,7 @@
   <div>
     <el-card>
       <img src="../../assets/img/终端.png" alt="" style="vertical-align:middle;">
-      <span style="vertical-align:middle;margin-left: 10px">Docker终端</span>
+      <span style="vertical-align:middle;margin-left: 10px">Docker节点</span>
       <el-divider></el-divider>
       <el-input placeholder="请输入要查找的docker信息(名称,标签,状态,地址)" v-model="description" class="input-with-select"
                 style="margin-bottom: 10px">
@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     async getHostInfo() {
-      const {data: res} = await this.$http.get("/docker/info", {params: {host: "39.108.180.201:2375"}})
+      const {data: res} = await this.$http.get("/docker/info")
       console.log(res)
       if (res.code === 200) {
         this.infoList = res.data

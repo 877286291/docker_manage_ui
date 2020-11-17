@@ -39,10 +39,12 @@
             <span>设置</span>
           </template>
           <el-menu-item-group>
+            <el-menu-item index="/node/add">节点管理</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group>
             <template slot="title">用户设置</template>
             <el-menu-item index="2-1">角色</el-menu-item>
             <el-menu-item index="2-2">组</el-menu-item>
-
           </el-menu-item-group>
           <el-menu-item-group>
             <template slot="title">安全设置</template>

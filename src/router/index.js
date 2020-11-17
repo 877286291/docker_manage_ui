@@ -19,6 +19,7 @@ const routes = [
         component: Home,
         children: [
             {path: '/index', component: () => import('../views/info/Index')},
+            {path: '/node/add', component: () => import('../views/setting/Node')},
         ]
     }
 ]
