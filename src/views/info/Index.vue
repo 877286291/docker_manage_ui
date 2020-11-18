@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card>
+    <el-card v-loading="loading">
       <img src="../../assets/img/终端.png" alt="" style="vertical-align:middle;">
       <span style="vertical-align:middle;margin-left: 10px">Docker节点</span>
       <el-divider></el-divider>
@@ -51,15 +51,17 @@ export default {
   data() {
     return {
       description: "",
-      infoList: []
+      infoList: [],
+      loading: true
     }
   },
   methods: {
     async getHostInfo() {
+      this.loading = true
       const {data: res} = await this.$http.get("/docker/info")
-      console.log(res)
       if (res.code === 200) {
         this.infoList = res.data
+        this.loading = false
         return this.$message.success(res.message)
       }
     },

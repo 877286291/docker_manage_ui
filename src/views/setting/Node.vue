@@ -4,14 +4,20 @@
               style="margin-bottom: 10px">
       <el-button slot="append" icon="el-icon-search"></el-button>
     </el-input>
-    <el-table :data="nodeList" loading="loading">
+    <el-table :data="nodeList" loading="loading" v-loading="loading">
       <el-table-column type="index" width="30"></el-table-column>
       <el-table-column prop="Hostname" label="节点名称" align="center"></el-table-column>
       <el-table-column prop="Type" label="类型" align="center"></el-table-column>
       <el-table-column prop="Url" label="URL" align="center"></el-table-column>
       <el-table-column prop="Group" label="所属组" align="center"></el-table-column>
+      <el-table-column prop="Status" label="状态" align="center">
+        <template slot-scope="row">
+          <el-tag type="success" v-if="row['Status']==='UP'">UP</el-tag>
+          <el-tag type="danger" v-else>DOWN</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column label="管理" align="center">
-        <template scope="">
+        <template slot-scope="">
           <el-button type="warning">修改</el-button>
           <el-button type="danger">删除</el-button>
         </template>
@@ -30,12 +36,7 @@ export default {
     return {
       loading: true,
       description: "",
-      nodeList: [{
-        "Hostname": "test",
-        "Type": "Docker",
-        "Group": "test",
-        "Url": "39.108.180.201:5732",
-      }]
+      nodeList: []
     }
   },
   methods: {
@@ -46,15 +47,14 @@ export default {
       if (res.code === 200) {
         this.infoList = res.data
         for (let i = 0; i < res.data.length; i++) {
-          console.log(res.data[i])
-          let tmp
-          tmp["Hostname"] = res.data[i]["hostname"]
+          let tmp = {}
+          tmp["Hostname"] = res.data[i]["Hostname"]
           tmp["Type"] = "Docker"
-          tmp["Group"] = res.data[i]["group"]
-          tmp["Url"] = res.data[i]["name"]
-          this.nodeList.push()
+          tmp["Group"] = res.data[i]["Group"]
+          tmp["Url"] = res.data[i]["Url"]
+          tmp["Url"] = res.data[i]["Url"]
+          this.nodeList.push(tmp)
         }
-        console.log(this.nodeList)
         this.loading = false
         return this.$message.success(res.message)
       }
